@@ -1,0 +1,36 @@
+
+server:
+  port : ${HOST_PORT}
+
+spring:
+  application:
+    name: Library
+  datasource:
+    url: ${DB_URL}
+    username: ${USER}
+    password: ${PASSWORD}
+    platform: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        default_schema: horus_heresy
+        format_sql: true
+        ddl-auto: validate
+        hbm2ddl:
+          auto: none
+    show-sql: true
+    management:
+      endpoints:
+        web.exposure.include: info, health, loggers, scheduledtasks
+      endpoint:
+        health.show-details: always
+      info:
+        git.mode: full
+
+  logging:
+    level:
+      org:
+        hibernate:
+          SQL: DEBUG
+      root: INFO
